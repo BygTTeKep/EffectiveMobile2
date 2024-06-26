@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres-problem-service:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=o5hapLMEM1
+      - POSTGRES_DB=Testovoe
+    networks:
+      - testovoe2
+
+  problem-service:
+    build: ./
+    ports:
+      - '3001:3001'
+    networks:
+      - testovoe2
+    depends_on:
+      - postgres-problem-service
+
+networks:
+  testovoe2:
+    external: true
