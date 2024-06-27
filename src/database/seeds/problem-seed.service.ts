@@ -12,13 +12,12 @@ export default class UserSeeder implements Seeder {
     await dataSource.query('TRUNCATE "user" RESTART IDENTITY;');
 
     const repository = dataSource.getRepository(ProblemEntity);
-    for (let i = 0; i < 10; i++) {
-      const problem = new ProblemEntity();
-      problem.name = faker.name.firstName('female'); // Генерация женских имен
-      problem.age = faker.datatype.number({ min: 18, max: 65 });
-      problem.gender = faker.name.gender();
-      problem.problem = faker.datatype.boolean();
-      await repository.insert(problem);
-    }
+    const fakeData = Array.from({ length: 100 }, () => ({
+      name: faker.name.firstName('female'), // Генерация женских имен
+      age: faker.datatype.number({ min: 18, max: 65 }),
+      gender: faker.name.gender(),
+      problem: faker.datatype.boolean(),
+    }));
+    await repository.insert(fakeData);
   }
 }
