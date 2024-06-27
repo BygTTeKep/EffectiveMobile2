@@ -7,8 +7,9 @@
     <h1>Effective Mobile Тестовое задание</h1>
     <h2>Описание</h2>
     <p>Это тестовое задание для Effective Mobile задние2. Проект использует Docker Compose для оркестрации сервисов и предоставляет API для работы с проблемами пользователей.</p>
-    <p>Покачто без миграций он циклом записи добавляет разбираюсь с миграциями у nest'а</p>
     <h2>Запуск проекта</h2>
+    <p>важно чтобы перед запуском в докере были сети testovoe и для 2-о задания testovoe2</p>
+    <code>docker network create testovoe && docker network create testovoe2</code>
     <ol>
         <li>Склонируйте репозиторий:
             <pre><code>git clone &lt;repository_url&gt;
