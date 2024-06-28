@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProblemEntity } from './problem/entity/problem.entity';
+import { Problem } from './problem/entity/problem.entity';
 import { PromlemModule } from './problem/problem.module';
 import { ProblemFactory } from './database/seeds/problem.factory';
 
@@ -12,14 +12,17 @@ import { ProblemFactory } from './database/seeds/problem.factory';
       port: 5432,
       password: 'o5hapLMEM1',
       username: 'postgres',
-      entities: [ProblemEntity],
+      entities: [Problem],
       database: 'Testovoe',
+      autoLoadEntities: true,
       synchronize: true,
       logging: true,
     }),
-    TypeOrmModule.forFeature([ProblemEntity]),
+    TypeOrmModule.forFeature([Problem]),
+    PromlemModule,
   ],
   controllers: [],
-  providers: [ProblemFactory],
+  providers: [],
+  // providers: [ProblemFactory],
 })
 export class AppModule {}

@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ProblemEntity } from './entity/problem.entity';
+import { Problem } from './entity/problem.entity';
 import { ProblemDto } from './dto/create.dto';
 
 @Injectable()
 export class ProblemService {
   constructor(
-    @InjectRepository(ProblemEntity)
-    private readonly problemrepository: Repository<ProblemEntity>,
+    @InjectRepository(Problem)
+    private readonly problemrepository: Repository<Problem>,
   ) {}
   async getAndUpdateProblem(): Promise<number> {
     const result = await this.problemrepository.query(
       `WITH problemCount AS (
-        UPDATE problem_entity 
+        UPDATE problem
         SET problem = FALSE
         WHERE problem = TRUE
         RETURNING 1
@@ -26,8 +26,8 @@ export class ProblemService {
     return parseInt(result[0].count, 10); // преобразование строки в число
   }
 
-  createProblem(ProblemDto: ProblemDto): Promise<ProblemEntity> {
-    const problem: ProblemEntity = new ProblemEntity();
+  createProblem(ProblemDto: ProblemDto): Promise<Problem> {
+    const problem: Problem = new Problem();
     problem.name = ProblemDto.name;
     problem.age = +ProblemDto.age;
     problem.gender = ProblemDto.gender;

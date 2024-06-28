@@ -1,10 +1,10 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { ProblemService } from './problem.service';
 import { ProblemDto } from './dto/create.dto';
+import { ProblemService } from './problem.service';
 
 @Controller('problem')
 export class ProblemController {
-  constructor(private readonly problemService: ProblemService) {}
+  constructor(@Inject() private readonly problemService: ProblemService) {}
   @Post()
   flagToFalse() {
     return this.problemService.getAndUpdateProblem();

@@ -14,9 +14,11 @@ services:
       - testovoe2
 
   problem-service:
-    build: ./
+    container_name: problem
+    build: .
     ports:
       - '3001:3001'
+    # command: npm run migrate
     networks:
       - testovoe2
     depends_on:
