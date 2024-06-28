@@ -20,6 +20,10 @@ cd &lt;repository_name&gt;
             <pre><code>docker-compose up
             </code></pre>
         </li>
+        <li>После успешного запуска контейнера прописать команду для миграций(если у вас уже есть контейнер с названием problem поменять container_name в docker-compose и в команде подставить за место problem ваше название):
+            <pre><code>docker exec problem npm run migrate
+            </code></pre>
+        </li>
     </ol>
     <h2>Тестирование API</h2>
     <p>Вы можете тестировать API с помощью Postman. Ниже приведены доступные эндпоинты:</p>
